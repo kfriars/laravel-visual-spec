@@ -5,19 +5,19 @@ A Laravel package for writing down an app's intended architecture as a spec that
 ## Language
 
 **Architecture spec**:
-The single declared description of how an app is meant to be structured, which plans are checked against and the specification test enforces. Provisional term; its final name is still open.
+The single declared description of how an app is meant to be structured, which deltas are checked against and the specification test enforces. Provisional term; its final name is still open.
 _Avoid_: map, rule map, rules file
 
-**Plan**:
-A proposed set of new or changed classes and their intended dependencies, written before the code exists so it can be checked against the architecture spec.
-_Avoid_: design, blueprint
+**Delta**:
+A stand-in for code changes not yet made: the types to be added, changed or removed, with the dependencies they are meant to have, so they can be checked against the architecture spec before the code exists. Groups and rules are never part of it; changing them is an edit to the spec itself.
+_Avoid_: plan, sketch, changeset, blueprint; "spec delta" for an edit to the spec
 
 **Group**:
-A named set of types, from application, framework or vendor code, described by facts its members share, so that a planned type is placed as surely as a written one. A type may belong to any number of groups and is bound by the rules of every group it belongs to.
+A named set of types, from application, framework or vendor code, described by facts its members share, so that a type in a delta is placed as surely as a written one. A type may belong to any number of groups and is bound by the rules of every group it belongs to.
 _Avoid_: layer, module, role, collector (as the general term; a project may name its own groups any of these)
 
 **Fact**:
-A statement about a single type that a plan can state and the specification test can prove: its namespace, short name, kind, ancestors, interfaces, traits, attributes, origin, or membership of another group. Group descriptions are built only from facts, combined with and, or and not.
+A statement about a single type that a delta can state and the specification test can prove: its namespace, short name, kind, ancestors, interfaces, traits, attributes, origin, or membership of another group. Group descriptions are built only from facts, combined with and, or and not.
 _Avoid_: selector, matcher, criterion
 
 **Group family**:
@@ -53,15 +53,19 @@ A place where application code uses a value, by calling it, reading it or treati
 _Avoid_: unresolved reference, dynamic dependency
 
 **Type graph**:
-The types the architecture spec is judged against, with their facts and the dependencies between them, as read from the code or as changed by a plan. A type in it need not exist in code yet.
+The types the architecture spec is judged against, with their facts and the dependencies between them, as read from the code or as changed by a delta. A type in it need not exist in code yet.
 _Avoid_: model, codebase, snapshot
 
 **Spec error**:
 A fault in the architecture spec itself rather than in the code, such as a description naming a type or namespace that doesn't exist, a group with no members, or a rule that can never be judged. It fails as a violation does, but is fixed by editing the spec.
 _Avoid_: warning, invalid rule
 
+**Delta error**:
+A fault in a delta itself rather than in the spec or the code, such as a name that resolves neither to an existing type nor to one the delta adds. It fails the delta, and is fixed by editing the delta.
+_Avoid_: plan error, invalid delta, delta warning
+
 **Specification test**:
-The test in the app's own suite that fails when application code breaks the architecture spec, or when the spec has a spec error. It judges code exactly as the picture and plan checks do.
+The test in the app's own suite that fails when application code breaks the architecture spec, or when the spec has a spec error. It judges code exactly as the picture and delta checks do.
 _Avoid_: architecture test, arch test, enforcement test, Pest plugin
 
 ## Origins of code
