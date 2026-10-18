@@ -12,7 +12,7 @@ A type's membership of a group is decided only from **facts** about the type. Th
 - its kind;
 - its ancestors, interfaces and traits, followed transitively;
 - its directly declared attributes;
-- its origin (application, framework or vendor), decided by where its file lives;
+- its origin (application, framework, vendor or PHP), decided by where its file lives. PHP's own types, which have no file, are of origin PHP (added by ADR 0004);
 - its membership of other groups.
 
 Ancestors, interfaces, traits and attributes may each name either one type or a group. File paths, wiring, regular expressions, `**` and partial-segment globs are not facts.
@@ -37,9 +37,9 @@ We chose fixed-depth segments because any-depth matching put wrong members into 
 
 ## Consequences
 
-- **The Pest plugin must not inherit Pest's matching.** Pest compares raw text prefixes, so `App\Features\Billing` also matches `App\Features\BillingReports`. Its negated trait check sees only direct traits, and it passes empty selectors.
+- **Enforcement must not inherit Pest's matching.** Since ADR 0005 it doesn't use Pest's arch API at all. Pest compares raw text prefixes, so `App\Features\Billing` also matches `App\Features\BillingReports`. Its negated trait check sees only direct traits, and it passes empty selectors.
 - **Vendor ancestry needs an installed `vendor/`.** Following ancestry through vendor classes requires one.
-- **Only application code is judged as the user end of an edge.** Framework and vendor members are only ever used.
+- **Only application code is judged as the user end of an edge.** Framework, vendor and PHP members are only ever used.
 - **A group can't be added ahead of its first member.** How planned types count towards that is left to "What is a plan?" (kfriars/laravel-visual-spec#12).
 
 See the wayfinder ticket "How does the architecture spec say which classes belong where?" (kfriars/laravel-visual-spec#9). The evidence is in [research/membership-stress-test](https://github.com/kfriars/laravel-visual-spec/blob/research/membership-stress-test/docs/research/membership-stress-test.md).
