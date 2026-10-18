@@ -13,11 +13,15 @@ A proposed set of new or changed classes and their intended dependencies, writte
 _Avoid_: design, blueprint
 
 **Group**:
-A named set of types, from the app or from vendor code, described by stated facts its members share, such as namespace or parent class, so that a planned type is placed as surely as a written one. A type may belong to any number of groups and is bound by the rules of every group it belongs to.
+A named set of types, from application, framework or vendor code, described by facts its members share, so that a planned type is placed as surely as a written one. A type may belong to any number of groups and is bound by the rules of every group it belongs to.
 _Avoid_: layer, module, role, collector (as the general term; a project may name its own groups any of these)
 
+**Fact**:
+A statement about a single type that a plan can state and the Pest plugin can prove: its namespace, short name, kind, ancestors, interfaces, traits, attributes, origin, or membership of another group. Group descriptions are built only from facts, combined with and, or and not.
+_Avoid_: selector, matcher, criterion
+
 **Group family**:
-A template that yields one group, with its rules, for each value of a captured part of its description, such as one group per module. It means nothing beyond the groups and rules it yields.
+A template that yields one group, with its rules, for each combination of values of its captured namespace segments, such as one group per module. It means nothing beyond the groups and rules it yields.
 _Avoid_: module (as the general term), group pattern
 
 **Dependency rule**:
@@ -33,5 +37,27 @@ A rule relating the memberships of two groups: every member of one must also be 
 _Avoid_: convention, shape rule
 
 **Gap**:
-A type in the app's own code that belongs to no group. Rules exist only between groups, so a gap is bound by no rule and an edge into it is not judged; gaps are shown so they can be closed.
+A type in application code that belongs to no group. Rules exist only between groups, so a gap is bound by no rule and an edge into it is not judged; gaps are shown so they can be closed.
 _Avoid_: unassigned, unclassified
+
+**Spec error**:
+A fault in the architecture spec itself rather than in the code, such as a description naming a type or namespace that doesn't exist, a group with no members, or a rule that can never be judged. It fails as a violation does, but is fixed by editing the spec.
+_Avoid_: warning, invalid rule
+
+## Origins of code
+
+**Application code**:
+The named types in the app's own repository, outside installed packages and excluded code. It is the only code whose dependencies the spec judges.
+_Avoid_: app code, user code, first-party code
+
+**Framework code**:
+The types shipped by Laravel's framework package itself. Laravel's other packages, such as Sanctum or Horizon, are vendor code.
+_Avoid_: core, Illuminate (as the general term)
+
+**Vendor code**:
+The types of every installed package other than the framework. They may be group members, but only ever as the used end of a dependency, because the team can't change them.
+_Avoid_: third-party code, dependencies
+
+**Excluded code**:
+Code in folders the spec is told to ignore, such as database factories and seeders. It is not application code, so it is neither a group member nor a gap.
+_Avoid_: ignored code, baseline
