@@ -21,4 +21,4 @@ The architecture spec is built from **groups**: named sets of types, app or vend
 - A plan must state, for each new type, the facts that group descriptions use.
 - A type has no single box, so each view chooses which groups it draws.
 
-See the wayfinder ticket "What can the architecture spec express?" (kfriars/laravel-visual-spec#8).
+See the wayfinder ticket "What can the architecture spec express?" (kfriars/whiteboard#8).

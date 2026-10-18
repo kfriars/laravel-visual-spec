@@ -47,4 +47,4 @@ We chose this for two reasons:
 - **Enforcement can't build on Pest's arch extractor.** Since ADR 0005, enforcement is this package's specification test, which runs this analysis.
 - **Functions stay outside the spec.** About 9% of real fixes forbid only a global function. Those rules stay ordinary Pest arch tests.
 
-See the wayfinder ticket "What counts as a dependency?" (kfriars/laravel-visual-spec#10). The evidence is in [research/larastan-inference](https://github.com/kfriars/laravel-visual-spec/blob/research/larastan-inference/docs/research/larastan-inference.md) and [research/kill-condition-recount](https://github.com/kfriars/laravel-visual-spec/blob/research/kill-condition-recount/docs/research/kill-condition-recount.md).
+See the wayfinder ticket "What counts as a dependency?" (kfriars/whiteboard#10). The evidence is in [research/larastan-inference](https://github.com/kfriars/whiteboard/blob/research/larastan-inference/docs/research/larastan-inference.md) and [research/kill-condition-recount](https://github.com/kfriars/whiteboard/blob/research/kill-condition-recount/docs/research/kill-condition-recount.md).

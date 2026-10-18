@@ -1,4 +1,4 @@
-# laravel-visual-spec
+# Whiteboard
 
 A Laravel package for writing down an app's intended architecture as a spec that humans review visually, agents plan against, and the app's own test suite enforces.
 

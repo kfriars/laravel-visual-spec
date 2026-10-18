@@ -4,7 +4,7 @@ status: accepted
 
 # Enforcement is a specification test in this package, not a Pest plugin
 
-laravel-visual-spec is one package, and it enforces the architecture spec itself, through a **specification test** in the app's own suite. That test runs unchanged under PHPUnit and under Pest. It reads the spec file when it runs, always runs its own analysis, and uses only the runners' stable public API. The runners only run it and report its result.
+Whiteboard is one package, and it enforces the architecture spec itself, through a **specification test** in the app's own suite. That test runs unchanged under PHPUnit and under Pest. It reads the spec file when it runs, always runs its own analysis, and uses only the runners' stable public API. The runners only run it and report its result.
 
 The single interpretation of the spec is one seam inside the package, made of three operations:
 
@@ -40,4 +40,4 @@ We chose this for three reasons:
 - **Ignores are now this package's call.** ADR 0002 left ignores outside the spec to "the plugin", which this package now is.
 - **Earlier ADRs are amended.** Where ADRs 0001 to 0004 say "the Pest plugin", they now mean the specification test.
 
-See the wayfinder ticket "Where is the boundary between this package and the Pest plugin?" (kfriars/laravel-visual-spec#11).
+See the wayfinder ticket "Where is the boundary between this package and the Pest plugin?" (kfriars/whiteboard#11).

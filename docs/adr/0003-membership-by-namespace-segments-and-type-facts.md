@@ -29,7 +29,7 @@ We chose fixed-depth segments because any-depth matching put wrong members into 
 
 - **Any-depth wildcards (`**`) or regex:** rejected because of the wrong members above, and because a regex can't be explained or edited in the picture.
 - **Path facts:** rejected. Under PSR-4, path follows namespace for application code. Paths appear only in the spec's excludes, which decide what counts as application code and never decide membership.
-- **Wiring facts** (route targets, container bindings, registries such as Bagisto's concord `$models`): rejected for now. Only two groups across the six reference apps needed them, and an `is` list or a marker attribute covers both. To be revisited if "How does the architecture spec treat Laravel's wiring?" (kfriars/laravel-visual-spec#16) makes wiring a fact.
+- **Wiring facts** (route targets, container bindings, registries such as Bagisto's concord `$models`): rejected for now. Only two groups across the six reference apps needed them, and an `is` list or a marker attribute covers both. To be revisited if "How does the architecture spec treat Laravel's wiring?" (kfriars/whiteboard#16) makes wiring a fact.
 - **Origin by namespace** (`Illuminate\` means framework): rejected. FreeScout and Akaunting override vendor namespaces in the repo, and those files are the team's to change. Framework means exactly the files of `laravel/framework`.
 - **Closed lists of family values:** rejected. Values are the namespace segments that exist, and a family's yielded group that comes out empty is dropped.
 - **Warnings for empty groups and unknown names** (Sloppy's choice): rejected, for the reason above.
@@ -40,6 +40,6 @@ We chose fixed-depth segments because any-depth matching put wrong members into 
 - **Enforcement must not inherit Pest's matching.** Since ADR 0005 it doesn't use Pest's arch API at all. Pest compares raw text prefixes, so `App\Features\Billing` also matches `App\Features\BillingReports`. Its negated trait check sees only direct traits, and it passes empty selectors.
 - **Vendor ancestry needs an installed `vendor/`.** Following ancestry through vendor classes requires one.
 - **Only application code is judged as the user end of an edge.** Framework, vendor and PHP members are only ever used.
-- **A group can't be added ahead of its first member.** How planned types count towards that is left to "What is a plan?" (kfriars/laravel-visual-spec#12).
+- **A group can't be added ahead of its first member.** How planned types count towards that is left to "What is a plan?" (kfriars/whiteboard#12).
 
-See the wayfinder ticket "How does the architecture spec say which classes belong where?" (kfriars/laravel-visual-spec#9). The evidence is in [research/membership-stress-test](https://github.com/kfriars/laravel-visual-spec/blob/research/membership-stress-test/docs/research/membership-stress-test.md).
+See the wayfinder ticket "How does the architecture spec say which classes belong where?" (kfriars/whiteboard#9). The evidence is in [research/membership-stress-test](https://github.com/kfriars/whiteboard/blob/research/membership-stress-test/docs/research/membership-stress-test.md).
